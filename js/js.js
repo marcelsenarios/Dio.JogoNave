@@ -24,6 +24,16 @@ $(document).ready(function(){
         var perdidos = 0;
         var energiaAtual = 3;
 
+        var somDisparo = document.getElementById("somDisparo");
+        var somExplosao = document.getElementById("somExplosao");
+        var musica = document.getElementById("musica");
+        var somGameover = document.getElementById("somGameover");
+        var somPerdido = document.getElementById("somPerdido");
+        var somResgate = document.getElementById("somResgate");
+
+        musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
+        musica.play();
+           
         jogo.pressionou = [];
 
         $(document).keydown(function(e){
@@ -168,7 +178,7 @@ $(document).ready(function(){
                               
 		
             if (colisaoDisparoInimigoHelecoptero.length > 0) {
-
+                somDisparo.play();
                 pontos = pontos + 100;
                 velocidade = velocidade + 0.3;
 
@@ -184,7 +194,7 @@ $(document).ready(function(){
             }
                 
             if (colisaoDisparoInimigoCaminhao.length > 0) {                
-
+                somDisparo.play();
                 pontos = pontos + 50;
 
                 inimigoCaminhaoX = parseInt($("#inimigoCaminhao").css("left"));
@@ -198,6 +208,7 @@ $(document).ready(function(){
             }
                 
             if (colisaoJogadorAmigo.length > 0) {  
+                somResgate.play();
                 salvos++;              
                 reposicionaAmigo();
                 $("#amigo").remove();
@@ -216,6 +227,7 @@ $(document).ready(function(){
         }        
 
         function explosaoInimigoHelecoptero(inimigoHelecopteroX,inimigoHelecopteroY) {
+            somExplosao.play();
             $("#fundoGame").append("<div id='explosaoInimigoHelecoptero'></div");
             $("#explosaoInimigoHelecoptero").css("background-image", "url(imgs/explosao.png)");
             var explosaoInimigoHelecopter = $("#explosaoInimigoHelecoptero");
@@ -234,6 +246,7 @@ $(document).ready(function(){
 
 	
         function explosaoInimigoCaminhao(inimigoCaminhaoX,inimigoCaminhaoY) {	
+            somExplosao.play();
             $("#fundoGame").append("<div id='explosaoInimigoCaminhao'></div");
             $("#explosaoInimigoCaminhao").css("background-image", "url(imgs/explosao.png)");
             var explosaoInimigoCaminhao = $("#explosaoInimigoCaminhao");
@@ -251,6 +264,7 @@ $(document).ready(function(){
         }
         
         function explosaoInimigoCaminhaoAmigo(amigoX,amigoY) {
+            somPerdido.play();
             $("#fundoGame").append("<div id='explosaoInimigoCaminhaoAmigo' class='anima4'></div");
             $("#explosao3").css("top",amigoY);
             $("#explosao3").css("left",amigoX);
@@ -305,8 +319,26 @@ $(document).ready(function(){
                 $("#energia").css("background-image", "url(imgs/energia1.png)");
             } else if (energiaAtual == 0) {
                 $("#energia").css("background-image", "url(imgs/energia0.png)");
-                //Game Over
+                gameOver();
             }
+        }
+
+        function gameOver() {
+            fimdejogo = true;
+            musica.pause();
+            somGameover.play();
+            
+            window.clearInterval(jogo.timer);
+            jogo.timer = null;
+            
+            $("#jogador").remove();
+            $("#inimigo1").remove();
+            $("#inimigo2").remove();
+            $("#amigo").remove();
+            
+            $("#fundoGame").append("<div id='fim'></div>");
+            
+            $("#fim").html("<h1> Game Over </h1><p>Sua pontuação foi: " + pontos + "</p>" + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>");
         }
 
     });
