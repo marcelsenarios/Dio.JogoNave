@@ -41,23 +41,23 @@ background-image:url(../imgs/apache.png);
 
 }
 
-#inimigo1 {
+#inimigoHelecoptero {
 	width: 256px;
 	height: 66px;
 	position: absolute;
 	left: 689px;
 	top: 253px;
-	background-image:url(../imgs/inimigo1.png);
+	background-image:url(../imgs/inimigoHelecoptero.png);
 	
 }
 
-#inimigo2 {
+#inimigoCaminhao {
 	width: 165px;
 	height: 70px;
 	position: absolute;
 	left: 775px;
 	top: 447px;
-	background-image: url(../imgs/inimigo2.png);
+	background-image: url(../imgs/inimigoCaminhao.png);
 }
 
 #amigo {
@@ -80,6 +80,58 @@ background-image:url(../imgs/apache.png);
 	padding:10px;
 
 }
+
+#disparo {
+	width: 50px;
+	height: 8px;
+	position: absolute;
+	background-image: url(../imgs/disparo.png);
+}
+
+
+#explosaoInimigoHelecoptero {
+	width:15px;
+	height:87px;
+	position:absolute;
+
+}
+
+#explosaoInimigoCaminhao {
+	width:15px;
+	height:87px;
+	position:absolute;
+	
+}
+
+#explosaoInimigoCaminhaoAmigo {
+	width:44px;
+	height:51px;
+	position:absolute;
+}
+
+
+#placar {
+	width: 450px;
+	height: 50px;
+	position: absolute;
+	left: 5px;
+	top: 590px;
+}
+
+h2 {
+	font-family:Titulo;
+	font-size:20px;
+	color:#FFF
+}
+
+#energia {
+	width: 140px;
+	height: 38px;
+	position: absolute;
+	left: 750px;
+	top: 7px;	
+}
+
 
 
 /*Animações*/
@@ -162,4 +214,41 @@ background-image:url(../imgs/apache.png);
     -moz-animation: play2 .9s steps(12) infinite;
     -ms-animation: play2 .9s steps(12) infinite;
     -o-animation: play2 .9s steps(12) infinite;
+}
+
+/*Anima 4*/
+.anima4 {
+	width:44px;
+	height:51px;
+	background-image:url(../imgs/amigo_explosao.png);
+	animation:play3 .5s steps(7) infinite;
+	-webkit-animation: play3 .5s steps(7) infinite;
+    -moz-animation: play3 .5s steps(7) infinite;
+    -ms-animation: play3 .5s steps(7) infinite;
+    -o-animation: play3 .5s steps(7) infinite;
+}
+
+@keyframes play3 {
+    from {background-position:0px;}
+    to {background-position:-308px;}
+}
+
+@-webkit-keyframes play3 {
+    from { background-position:    0px; }
+    to { background-position: -308px; }
+}
+
+@-moz-keyframes play3 {
+    from { background-position:    0px; }
+    to { background-position: -308px; }
+}
+
+@-ms-keyframes play3 {
+    from { background-position:    0px; }
+    to { background-position: -308px; }
+}
+
+@-o-keyframes play3 {
+    from { background-position:    0px; }
+    to { background-position: -308px; }
 }
